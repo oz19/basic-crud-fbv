@@ -1,0 +1,26 @@
+{% extends 'books/base.html'  %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class='container'>
+
+        <div class='row mb-3 mt-3'>
+            <div class='col'>
+                <div class='text-right'>
+                    <a href="{% url 'index' %}" class='btn btn-dark' role='button'>Go to book list</a>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            
+            <form method='POST'>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type='submit' class='btn btn-dark'>Save</button>
+            </form>
+        </div>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'books/base.html'  %}
+
+{% block content %}
+    <div class='container'>
+
+        <div class='row mb-3 mt-3'>
+            <div class='col'>
+                <div class='text-right'>
+                    <a href="{% url 'index' %}" class='btn btn-dark' role='button'>Go to book list</a>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            {% if book %}
+                <ul class='list-group'>
+                    <li class='list-group-item'>Book: {{ book.name }}</li>
+                    <li class='list-group-item'>ISBN: {{ book.isbn }}</li>
+                </ul>
+            {% else %}
+                <h5>Sorry! This ISBN is not registered on our database.</h5>
+            {% endif %}
+        </div>
+        
+    </div>
+{% endblock %}
