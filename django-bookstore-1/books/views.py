@@ -7,7 +7,7 @@ from books.forms import BookForm
 
 
 def root(request):
-    return redirect('index')
+    return redirect('books:index')
 
 def all_books(request):
     books   = Book.objects.all()
@@ -50,7 +50,7 @@ def add_book(request):
         form = BookForm(request.POST)
         if form.is_valid():
             book = form.save()
-            return redirect('get_book', isbn=book.isbn)
+            return redirect('books:get_book', isbn=book.isbn)
 
     else:
         form = BookForm()
@@ -75,7 +75,7 @@ def edit_book(request, isbn):
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             book = form.save()
-            return redirect('get_book', isbn=book.isbn)
+            return redirect('books:get_book', isbn=book.isbn)
 
     else:
         form = BookForm(instance=book)
@@ -92,4 +92,4 @@ def delete_book(request, isbn):
     if book:
         book.delete()
     
-    return redirect('index')
+    return redirect('books:index')
